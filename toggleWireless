@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+if [ $(rfkill list wwan | grep "Soft blocked: yes" | wc -l) -eq 1 ] ; then
+    rfkill unblock wifi
+    rfkill unblock wwan
+    notify-send -t 5000 -- "Enabled wireless"
+else
+    rfkill block wwan
+    rfkill block wifi
+    notify-send -t 5000 -- "Disabled wireless"
+fi

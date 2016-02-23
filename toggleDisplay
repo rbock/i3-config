@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Adapted from http://www.pclinuxos.com/forum/index.php?topic=111155.0
+#
+# In case of two connected displays, one being active: toggle active displays
+# In case of one connected display, activate that one
+# In case of no active display: Activate everything
+
+xStatus=`xrandr`
+connectedOutputs=$(echo "$xStatus" | grep " connected" | sed -e "s/\([A-Z0-9]\+\) connected.*/\1/")
+activeOutput=$(echo "$xStatus" | grep -e " connected [^(]" | sed -e "s/\([A-Z0-9]\+\) connected.*/\1/" | head -n1)
+connectionCount=$(echo $connectedOutputs | wc -w)
+command="xrandr"
+
+if [ "$connectionCount" -gt 1 ]; then
+  for display in $connectedOutputs; do
+    if [ $display = $activeOutput ]; then
+      command="$command --output $display --off"
+    else
+      command="$command --output $display --auto"
+    fi
+  done
+else
+  command="$command --auto"
+fi
+
+$command
