@@ -155,11 +155,25 @@ bar {
 }
 
 # ---------------------------------------------------------------------
-# SCREEN LOCKING
+# ASSIGNING APPLICATIONS TO WORKSPACES
+# use xprop | grep WM_CLASS to find the class to enter here
 # ---------------------------------------------------------------------
 
-# Need to clean up my machine setup...
-exec --no-startup-id "killall gnome-screensaver"
+assign [class="^chromium-browser$"] 6
+assign [class="^Mail$"] 7
+assign [class="^Pidgin$"] 8
+assign [class="^Skype$"] 9
+assign [class="^Thunar$"] 10
+assign [class="^Totem$"] 10
+
+
+# ---------------------------------------------------------------------
+# SCREEN LOCKING
+# Make sure that there is no other screen saver running in parallel.
+# They don't play well together...
+# I had to fight lightdm to not start gnome-screensaver for me.
+# It was configured somewhere in $HOME/.config
+# ---------------------------------------------------------------------
 
 # Manual:
 bindsym $mod+x exec "xautolock -locknow"
@@ -193,10 +207,10 @@ bindsym XF86MonBrightnessUp exec "xbacklight -inc 20"
 # NETWORKING
 # ---------------------------------------------------------------------
 exec --no-startup-id "eval `ssh-agent -s -t 6000`"
+exec --no-startup-id "eval `gpg-agent -daemon`"
 exec --no-startup-id nm-applet
 bindsym XF86WLAN exec "~/.i3/toggleWireless"
 #bindsym $mod+XF86WLAN exec "~/.i3/toggleBluetooth"
-
 
 # ---------------------------------------------------------------------
 # SOUND
