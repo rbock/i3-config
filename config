@@ -159,8 +159,9 @@ bar {
 # use xprop | grep WM_CLASS to find the class to enter here
 # ---------------------------------------------------------------------
 
+assign [class="^Firefox$"] 5
 assign [class="^chromium-browser$"] 6
-assign [class="^Mail$"] 7
+assign [class="^Thunderbird$"] 7
 assign [class="^Pidgin$"] 8
 assign [class="^Skype$"] 9
 assign [class="^Thunar$"] 10
@@ -226,6 +227,8 @@ bindsym XF86AudioMicMute exec "amixer -D pulse sset Capture toggle"
 exec --no-startup-id "synclient TouchpadOff=1"
 bindsym XF86Explorer exec "synclient TouchpadOff=1"
 bindsym $mod+XF86Explorer exec "synclient TouchpadOff=0"
+bindsym F12 exec "synclient TouchpadOff=1"
+bindsym $mod+F12 exec "synclient TouchpadOff=0"
 
 # ---------------------------------------------------------------------
 # UNUSED FUNCTION KEYS
