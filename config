@@ -184,7 +184,7 @@ bindsym $mod+KP_Enter exec "xautolock -locknow"
 exec --no-startup-id "~/.i3/autolock"
 
 # Lock on suspend:
-exec --no-startup-id "xss-lock -- xautolock -locknow"
+exec --no-startup-id "xss-lock -- i3lock -e -d -c 000000"
 
 # ---------------------------------------------------------------------
 # DISPLAYS
