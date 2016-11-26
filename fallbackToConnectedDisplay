@@ -5,7 +5,7 @@
 # activate whatever is available
 
 while true; do
-	xStatus=`xrandr`
+	xStatus=`xrandr --current`
 	activeOutputs=$(echo "$xStatus" | grep -e " connected [^(]" | sed -e "s/\([A-Z0-9]\+\) connected.*/\1/")
 	activeCount=$(echo $activeOutputs | wc -w)
 

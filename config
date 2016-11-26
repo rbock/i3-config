@@ -147,6 +147,10 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+# Keyboard layout
+bindsym $mod+u exec "setxkbmap us"
+bindsym $mod+Shift+u exec "setxkbmap us intl"
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
@@ -197,8 +201,12 @@ bindsym $mod+F7 exec "~/.i3/toggleDisplay"
 # Fallback to available display if the current active display gets disconnected
 exec --no-startup-id "~/.i3/fallbackToConnectedDisplay"
 
-# Emergency: Try to do default with whatever screen is available
-bindsym $mod+XF86Display exec "xrandr --auto"
+# Emergency: Turn off builtin display
+# (Sometimes the display is active but still dead after waking up from suspend)
+bindsym $mod+XF86Display exec "xrandr --output eDP-1 --off"
+
+# Emergency: Turn on all connected displays
+bindsym $mod+Shift+XF86Display exec "xrandr --auto"
 
 # Brightness
 bindsym XF86MonBrightnessDown exec "xbacklight -dec 20"
